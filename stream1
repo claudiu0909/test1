@@ -1,0 +1,21 @@
+start_number = 0.01234152
+end_number = 0.01234155
+ 
+snowpark_df = session.range(start_number, end_number)
+ 
+st.write(start_number)
+st.write(end_number)
+ 
+snowpark_df.show()
+ 
+st.write(snowpark_df.to_pandas())
+st.write('===========================================')
+ 
+my_df = session.sql('SELECT ( ROW_NUMBER()  OVER ( ORDER BY  SEQ8() ) -  1 ) * (1) + (0.01234152) AS id FROM ( TABLE (GENERATOR(ROWCOUNT => 1.00000003)))')
+ 
+my_df.show()
+ 
+st.write(my_df)
+ 
+for row in my_df:
+    st.write(row[0])
